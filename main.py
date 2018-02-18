@@ -1,12 +1,16 @@
-from flask import Flask, render_template
-
+from flask import Flask, render_template, request
+from block import *
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-   return render_template('index.html')
+    if request.method == 'POST':
+        lender = request.form['lender']
+        amount = request.form['amount']
+        borrower = request.form['borrower']
+    return render_template('index.html')
 
 
 
