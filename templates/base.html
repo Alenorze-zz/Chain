@@ -9,13 +9,28 @@
     <title>Blockchain</title>
 </head>
 <body>
-    <div class="containre">
+    <div class="container">
         <div class="row">
             <div class="col-6 mx-auto mt-5">
                 {% block content %}
 
                 {% endblock %}
             </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto mt-5">
+                <form action="{{ url_for('check')}}" method="POST">
+                    <button type="submit" class="btn btn-success">Check Truth</button>
+                </form>
+            </div>
+        </div>
+        <div class="row col-6">
+            {% block checking %}
+
+            {% endblock %}
         </div>
     </div>
 </body>
