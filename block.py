@@ -14,8 +14,8 @@ def get_files():
     return sorted([int(i) for i in files])
 
 def check_integrity():
-
     files = get_files()
+    results = []
 
     for file in files[1:]:
         f = open(blockchain_dir + str(file))
@@ -28,15 +28,17 @@ def check_integrity():
             res = 'Ok'
         else:
             res = 'Corrupted'
-        print("Block {} is: {}".format(prev_file, res))
+        #print("Block {} is: {}".format(prev_file, res))
+        results.append({'block': prev_file, 'result': res})
+    return results
 
 def write_block(name, amount, to_whom, hash=''):
 
     files = get_files()
-    last_file = files[-1]
-    filename = str(last_file + 1)
+    prev_file = files[-1]
+    filename = str(prev_file + 1)
 
-    prev_hash = get_hash(str(last_file))
+    prev_hash = get_hash(str(prev_file))
 
     data = {'name': name,
             'amount': amount,
@@ -48,7 +50,7 @@ def write_block(name, amount, to_whom, hash=''):
 
 
 def main():
-    write_block(name='Klossy', amount='22', to_whom='Me')
+    print(check_integrity())
 
 if __name__ == '__main__':
     main()
