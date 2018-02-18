@@ -2,7 +2,7 @@ import json
 
 
 
-def write_block():
+def write_block(name, amount, to_whom, hash=''):
     data = {'name': 'Klossy',
             'amount': '22',
             'to_whom': 'Me',
